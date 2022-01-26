@@ -1,4 +1,7 @@
-﻿using Godot;
+﻿
+#pragma warning disable
+
+using Godot;
 using Godot.Collections;
 
 namespace WAT

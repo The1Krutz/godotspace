@@ -1,3 +1,6 @@
+
+#pragma warning disable
+
 using Godot;
 using System;
 using System.Collections.Generic;

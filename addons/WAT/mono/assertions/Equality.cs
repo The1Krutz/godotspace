@@ -1,4 +1,7 @@
-﻿using System;
+﻿
+#pragma warning disable
+
+using System;
 using System.Collections;
 using System.Globalization;
 using System.Reflection;

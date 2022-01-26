@@ -1,3 +1,6 @@
+
+#pragma warning disable
+
 using System.Runtime.Remoting;
 using Godot;
 using Godot.Collections;
