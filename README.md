@@ -14,7 +14,8 @@ It would be real nice if it could end up similar to any of its inspirations, but
 
 *  TIE Fighter and Freespace 2
 
-    * Scripted missions, less complex flight model
+    * Scripted missions
+    * Less complex flight model
 
 *  Elite Dangerous
 
