@@ -1,3 +1,6 @@
+
+#pragma warning disable
+
 using System.Diagnostics;
 using System.Dynamic;
 using Godot;

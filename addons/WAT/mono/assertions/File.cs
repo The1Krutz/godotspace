@@ -1,4 +1,7 @@
-﻿using System;
+﻿
+#pragma warning disable
+
+using System;
 using Godot;
 using Godot.Collections;
 

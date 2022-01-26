@@ -1,3 +1,6 @@
+
+#pragma warning disable
+
 using System;
 using Godot;
 
