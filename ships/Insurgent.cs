@@ -41,7 +41,7 @@ public class Insurgent : RigidBody {
   public override void _IntegrateForces(PhysicsDirectBodyState state) {
     GetInput(state.Step);
 
-    // LinearVelocity = -Transform.basis.z * throttle;
+    LinearVelocity = Transform.basis.z * throttle;
     AddTorque(-Transform.basis.z * rollInput * RollSpeed);
     AddTorque(Transform.basis.x * pitchInput * PitchSpeed);
     AddTorque(Transform.basis.y * yawInput * YawSpeed);
