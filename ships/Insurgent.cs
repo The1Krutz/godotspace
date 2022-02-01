@@ -47,11 +47,6 @@ public class Insurgent : RigidBody {
     AddTorque(Transform.basis.y * yawInput * YawSpeed);
   }
 
-  public override void _PhysicsProcess(float delta) {
-    base._PhysicsProcess(delta);
-    GD.Print(Mode, Sleeping);
-  }
-
   // Public Functions
 
   // Private Functions
