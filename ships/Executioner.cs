@@ -8,6 +8,8 @@ public class Executioner : KinematicBody {
 
   // Exports
   [Export]
+  public bool Active;
+  [Export]
   public float MaxSpeed = 50.0f;
   [Export]
   public float Acceleration = 0.6f;
@@ -40,7 +42,7 @@ public class Executioner : KinematicBody {
     Transform transform = Transform;
     transform.basis = transform.basis.Rotated(Transform.basis.z, rollInput * RollSpeed * delta);
     transform.basis = transform.basis.Rotated(Transform.basis.x, pitchInput * PitchSpeed * delta);
-    transform.basis = transform.basis.Rotated(Transform.basis.y, yawInput * RollSpeed * delta);
+    transform.basis = transform.basis.Rotated(Transform.basis.y, yawInput * YawSpeed * delta);
     transform.basis = transform.basis.Orthonormalized();
     Transform = transform;
 
@@ -52,6 +54,10 @@ public class Executioner : KinematicBody {
 
   // Private Functions
   private void GetInput(float delta) {
+    if (!Active) {
+      return;
+    }
+
     if (Input.IsActionPressed("throttle_up")) {
       forwardSpeed = Mathf.Lerp(forwardSpeed, MaxSpeed, Acceleration * delta);
     }
