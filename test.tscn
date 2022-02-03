@@ -9,7 +9,6 @@
 
 [node name="LerpCamera" type="Camera" parent="."]
 transform = Transform( -1, -8.74228e-08, 2.58163e-14, -8.43166e-08, 0.96447, 0.264193, -2.30965e-08, 0.264193, -0.96447, -3.91434, 7.46973, -24.8625 )
-current = true
 script = ExtResource( 2 )
 TargetPath = NodePath("../Striker")
 Offset = Vector3( 0, 7, -20 )
