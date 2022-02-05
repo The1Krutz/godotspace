@@ -8,7 +8,7 @@ It would be real nice if it could end up similar to any of its inspirations, but
 
 ## Features
 
-*  add some of these lol
+*  Fly a spaceship in a featureless void!
 
 ## Inspirations:
 
@@ -23,7 +23,9 @@ It would be real nice if it could end up similar to any of its inspirations, but
 
 ## Credits
 
-* Spaceship models taken from the [https://quaternius.com/packs/ultimatespaceships.html](Quaternius Ultimate Spaceship Pack) (licensed under CC0)
+* Spaceship models are from the [https://quaternius.com/packs/ultimatespaceships.html](Quaternius Ultimate Spaceship Pack) (licensed CC0)
+
+* Skybox is from [https://godotengine.org/asset-library/asset/579](AllSky Free) (licensed MIT)
 
 ## License
 
