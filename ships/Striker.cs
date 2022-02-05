@@ -10,6 +10,8 @@ public class Striker : RigidBody {
   [Export]
   public bool Active;
   [Export]
+  public bool InvertPitch = true;
+  [Export]
   public float PitchSpeed = 10.0f;
   [Export]
   public float RollSpeed = 10.0f;
@@ -66,8 +68,12 @@ public class Striker : RigidBody {
     lateralInput = Input.GetActionStrength("slide_left") - Input.GetActionStrength("slide_right");
     verticalInput = Input.GetActionStrength("slide_up") - Input.GetActionStrength("slide_down");
 
-    pitchInput = Input.GetActionStrength("pitch_up") - Input.GetActionStrength("pitch_down");
     rollInput = Input.GetActionStrength("roll_left") - Input.GetActionStrength("roll_right");
+    pitchInput = Input.GetActionStrength("pitch_up") - Input.GetActionStrength("pitch_down");
     yawInput = Input.GetActionStrength("yaw_left") - Input.GetActionStrength("yaw_right");
+
+    if (InvertPitch) {
+      pitchInput *= -1;
+    }
   }
 }
