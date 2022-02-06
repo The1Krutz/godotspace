@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://interface/theme/default_theme.tres" type="Theme" id=1]
+[ext_resource path="res://interface/bar/label_bg.png" type="Texture" id=2]
+[ext_resource path="res://interface/bar/fill.png" type="Texture" id=3]
+[ext_resource path="res://interface/bar/bg.png" type="Texture" id=4]
+[ext_resource path="res://interface/bar/AxisBar.cs" type="Script" id=5]
+
+[node name="AxisBar" type="HBoxContainer"]
+margin_right = 750.0
+margin_bottom = 53.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Count" type="NinePatchRect" parent="."]
+margin_right = 250.0
+margin_bottom = 53.0
+rect_min_size = Vector2( 250, 0 )
+texture = ExtResource( 2 )
+
+[node name="Axis" type="Label" parent="Count"]
+anchor_left = 0.067
+anchor_top = 0.12
+anchor_right = 0.935
+anchor_bottom = 0.858
+margin_left = 0.25
+margin_right = -32.05
+margin_bottom = 0.0999985
+theme = ExtResource( 1 )
+text = "Vertical:"
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="Label" parent="Count"]
+anchor_left = 0.704
+anchor_top = 0.14
+anchor_right = 1.044
+anchor_bottom = 0.868
+margin_left = -2.00002
+margin_right = -17.3
+margin_bottom = 0.599998
+theme = ExtResource( 1 )
+text = "-0.6"
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="."]
+margin_left = 254.0
+margin_right = 650.0
+margin_bottom = 53.0
+min_value = -1.0
+max_value = 1.0
+step = 0.01
+texture_under = ExtResource( 4 )
+texture_progress = ExtResource( 3 )

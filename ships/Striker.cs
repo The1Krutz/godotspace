@@ -1,16 +1,27 @@
 using Godot;
 
+public enum DegreeOfFreedom {
+  Roll,
+  Pitch,
+  Yaw,
+  Forward,
+  Vertical,
+  Lateral
+}
+
 /// <summary>
 /// template
 /// </summary>
 public class Striker : RigidBody {
   // Signals
+  [Signal]
+  public delegate void UpdateInput(DegreeOfFreedom axis, float value);
+  [Signal]
+  public delegate void UpdateVelocity(DegreeOfFreedom axis, float value);
 
   // Exports
   [Export]
   public bool Active;
-  [Export]
-  public bool InvertPitch = true;
   [Export]
   public float PitchSpeed = 10.0f;
   [Export]
@@ -35,6 +46,7 @@ public class Striker : RigidBody {
   private float verticalInput;
   private float lateralInput;
   private float forwardInput;
+  private bool emergencyBrake;
 
   // Constructor
 
@@ -46,14 +58,21 @@ public class Striker : RigidBody {
 
   public override void _IntegrateForces(PhysicsDirectBodyState state) {
     GetInput();
+    EmitInputs();
+    EmitVelocities();
 
-    AddCentralForce(-Transform.basis.z * forwardInput * ForwardSpeed);
-    AddCentralForce(Transform.basis.x * lateralInput * LateralSpeed);
-    AddCentralForce(Transform.basis.y * verticalInput * VerticalSpeed);
+    if (emergencyBrake) {
+      LinearVelocity = Vector3.Zero;
+      AngularVelocity = Vector3.Zero;
+    } else {
+      AddCentralForce(-Transform.basis.z * forwardInput * ForwardSpeed);
+      AddCentralForce(Transform.basis.y * verticalInput * VerticalSpeed);
+      AddCentralForce(Transform.basis.x * lateralInput * LateralSpeed);
 
-    AddTorque(-Transform.basis.z * rollInput * RollSpeed);
-    AddTorque(Transform.basis.x * pitchInput * PitchSpeed);
-    AddTorque(Transform.basis.y * yawInput * YawSpeed);
+      AddTorque(-Transform.basis.z * rollInput * RollSpeed);
+      AddTorque(Transform.basis.x * pitchInput * PitchSpeed);
+      AddTorque(Transform.basis.y * -yawInput * YawSpeed);
+    }
   }
 
   // Public Functions
@@ -64,16 +83,36 @@ public class Striker : RigidBody {
       return;
     }
 
-    forwardInput = Input.GetActionStrength("slide_backward") - Input.GetActionStrength("slide_forward");
-    lateralInput = Input.GetActionStrength("slide_left") - Input.GetActionStrength("slide_right");
+    emergencyBrake = Input.IsActionPressed("emergency_brake");
+
+    forwardInput = Input.GetActionStrength("slide_forward") - Input.GetActionStrength("slide_backward");
+    lateralInput = Input.GetActionStrength("slide_right") - Input.GetActionStrength("slide_left");
     verticalInput = Input.GetActionStrength("slide_up") - Input.GetActionStrength("slide_down");
 
-    rollInput = Input.GetActionStrength("roll_left") - Input.GetActionStrength("roll_right");
+    rollInput = Input.GetActionStrength("roll_right") - Input.GetActionStrength("roll_left");
     pitchInput = Input.GetActionStrength("pitch_up") - Input.GetActionStrength("pitch_down");
-    yawInput = Input.GetActionStrength("yaw_left") - Input.GetActionStrength("yaw_right");
+    yawInput = Input.GetActionStrength("yaw_right") - Input.GetActionStrength("yaw_left");
+  }
 
-    if (InvertPitch) {
-      pitchInput *= -1;
-    }
+  private void EmitInputs() {
+    EmitSignal(nameof(UpdateInput), DegreeOfFreedom.Roll, rollInput);
+    EmitSignal(nameof(UpdateInput), DegreeOfFreedom.Pitch, pitchInput);
+    EmitSignal(nameof(UpdateInput), DegreeOfFreedom.Yaw, yawInput);
+
+    EmitSignal(nameof(UpdateInput), DegreeOfFreedom.Forward, forwardInput);
+    EmitSignal(nameof(UpdateInput), DegreeOfFreedom.Lateral, lateralInput);
+    EmitSignal(nameof(UpdateInput), DegreeOfFreedom.Vertical, verticalInput);
+  }
+
+  private void EmitVelocities() {
+    Vector3 localAngularVelocity = GlobalTransform.basis.XformInv(AngularVelocity);
+    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Roll, localAngularVelocity.z);
+    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Pitch, localAngularVelocity.x);
+    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Yaw, localAngularVelocity.y);
+
+    Vector3 localLinearVelocity = GlobalTransform.basis.XformInv(LinearVelocity);
+    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Forward, -localLinearVelocity.z);
+    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Lateral, localLinearVelocity.x);
+    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Vertical, localLinearVelocity.y);
   }
 }

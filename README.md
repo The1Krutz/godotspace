@@ -27,6 +27,8 @@ It would be real nice if it could end up similar to any of its inspirations, but
 
 * Skybox is from [https://godotengine.org/asset-library/asset/579](AllSky Free) (licensed MIT)
 
+* Bar graphics are from [https://github.com/GDQuest/godot-demos](GDQuest's Godot Demos) (licensed MIT)
+
 ## License
 
 MIT License unless otherwise specified
