@@ -14,22 +14,46 @@ public class DebugInterface : Control {
 
   // Private Fields
   private AxisBar roll;
+  private AxisBar pitch;
+  private AxisBar yaw;
+  private AxisBar forward;
+  private AxisBar vertical;
+  private AxisBar lateral;
 
   // Constructor
 
   // Lifecycle Hooks
   public override void _Ready() {
     roll = GetNode<AxisBar>("BarList/Roll");
+    pitch = GetNode<AxisBar>("BarList/Pitch");
+    yaw = GetNode<AxisBar>("BarList/Yaw");
+    forward = GetNode<AxisBar>("BarList/Forward");
+    vertical = GetNode<AxisBar>("BarList/Vertical");
+    lateral = GetNode<AxisBar>("BarList/Lateral");
   }
 
   // Public Functions
   public void OnInputUpdate(DegreeOfFreedom axis, float newValue) {
-    // GD.Print(axis, newValue);
-
-    if (axis == DegreeOfFreedom.Roll) {
-      roll.UpdateBarValue(newValue);
+    switch (axis) {
+      case DegreeOfFreedom.Roll:
+        roll.UpdateBarValue(newValue);
+        break;
+      case DegreeOfFreedom.Pitch:
+        pitch.UpdateBarValue(newValue);
+        break;
+      case DegreeOfFreedom.Yaw:
+        yaw.UpdateBarValue(newValue);
+        break;
+      case DegreeOfFreedom.Forward:
+        forward.UpdateBarValue(newValue);
+        break;
+      case DegreeOfFreedom.Vertical:
+        vertical.UpdateBarValue(newValue);
+        break;
+      case DegreeOfFreedom.Lateral:
+        lateral.UpdateBarValue(newValue);
+        break;
     }
-
   }
 
   // Private Functions
