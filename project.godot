@@ -39,7 +39,17 @@ Display=8
 [application]
 
 config/name="Godotspace"
+run/main_scene="res://test.tscn"
 config/icon="res://icon.png"
+
+[debug]
+
+settings/stdout/print_fps=true
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
 
 [editor_plugins]
 
@@ -134,4 +144,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+threads/thread_model=2
 environment/default_environment="res://default_env.tres"

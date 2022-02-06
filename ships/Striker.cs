@@ -1,10 +1,23 @@
 using Godot;
 
+public enum DegreeOfFreedom {
+  Roll,
+  Pitch,
+  Yaw,
+  Forward,
+  Vertical,
+  Lateral
+}
+
 /// <summary>
 /// template
 /// </summary>
 public class Striker : RigidBody {
   // Signals
+  [Signal]
+  public delegate void UpdateInput(DegreeOfFreedom axis, float value);
+  [Signal]
+  public delegate void UpdateVelocity(DegreeOfFreedom axis, float value);
 
   // Exports
   [Export]
@@ -46,6 +59,8 @@ public class Striker : RigidBody {
 
   public override void _IntegrateForces(PhysicsDirectBodyState state) {
     GetInput();
+    EmitInputs();
+    EmitVelocities();
 
     AddCentralForce(-Transform.basis.z * forwardInput * ForwardSpeed);
     AddCentralForce(Transform.basis.x * lateralInput * LateralSpeed);
@@ -75,5 +90,19 @@ public class Striker : RigidBody {
     if (InvertPitch) {
       pitchInput *= -1;
     }
+  }
+
+  private void EmitInputs() {
+    EmitSignal(nameof(UpdateInput), DegreeOfFreedom.Roll, rollInput);
+    EmitSignal(nameof(UpdateInput), DegreeOfFreedom.Pitch, pitchInput);
+    EmitSignal(nameof(UpdateInput), DegreeOfFreedom.Yaw, yawInput);
+
+    EmitSignal(nameof(UpdateInput), DegreeOfFreedom.Forward, forwardInput);
+    EmitSignal(nameof(UpdateInput), DegreeOfFreedom.Lateral, lateralInput);
+    EmitSignal(nameof(UpdateInput), DegreeOfFreedom.Vertical, verticalInput);
+  }
+
+  private void EmitVelocities() {
+    
   }
 }
