@@ -23,8 +23,6 @@ public class Striker : RigidBody {
   [Export]
   public bool Active;
   [Export]
-  public bool InvertPitch = true;
-  [Export]
   public float PitchSpeed = 10.0f;
   [Export]
   public float RollSpeed = 10.0f;
@@ -68,7 +66,7 @@ public class Striker : RigidBody {
 
     AddTorque(-Transform.basis.z * rollInput * RollSpeed);
     AddTorque(Transform.basis.x * pitchInput * PitchSpeed);
-    AddTorque(Transform.basis.y * yawInput * YawSpeed);
+    AddTorque(Transform.basis.y * -yawInput * YawSpeed);
   }
 
   // Public Functions
@@ -79,17 +77,13 @@ public class Striker : RigidBody {
       return;
     }
 
-    forwardInput = Input.GetActionStrength("slide_backward") - Input.GetActionStrength("slide_forward");
-    lateralInput = Input.GetActionStrength("slide_left") - Input.GetActionStrength("slide_right");
+    forwardInput = Input.GetActionStrength("slide_forward") - Input.GetActionStrength("slide_backward");
+    lateralInput = Input.GetActionStrength("slide_right") - Input.GetActionStrength("slide_left");
     verticalInput = Input.GetActionStrength("slide_up") - Input.GetActionStrength("slide_down");
 
-    rollInput = Input.GetActionStrength("roll_left") - Input.GetActionStrength("roll_right");
+    rollInput = Input.GetActionStrength("roll_right") - Input.GetActionStrength("roll_left");
     pitchInput = Input.GetActionStrength("pitch_up") - Input.GetActionStrength("pitch_down");
-    yawInput = Input.GetActionStrength("yaw_left") - Input.GetActionStrength("yaw_right");
-
-    if (InvertPitch) {
-      pitchInput *= -1;
-    }
+    yawInput = Input.GetActionStrength("yaw_right") - Input.GetActionStrength("yaw_left");
   }
 
   private void EmitInputs() {
@@ -103,6 +97,13 @@ public class Striker : RigidBody {
   }
 
   private void EmitVelocities() {
-    
+    // these should be the values for how fast you're moving in a direction, not the input values
+    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Roll, rollInput);
+    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Pitch, pitchInput);
+    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Yaw, yawInput);
+
+    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Forward, forwardInput);
+    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Lateral, lateralInput);
+    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Vertical, verticalInput);
   }
 }

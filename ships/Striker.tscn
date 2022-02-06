@@ -9,10 +9,14 @@ points = PoolVector3Array( 2.26293, -1.10106, -1.56444, 1.86351, -0.68085, -1.60
 [node name="Striker" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
+[node name="Striker" parent="." index="0"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+
 [node name="CollisionShape" type="CollisionShape" parent="." index="1"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="Camera" type="Camera" parent="." index="2"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 1.40332 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.403 )
 current = true
 far = 10000.0

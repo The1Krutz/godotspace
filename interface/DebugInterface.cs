@@ -56,5 +56,28 @@ public class DebugInterface : Control {
     }
   }
 
+  public void OnVelocityUpdate(DegreeOfFreedom axis, float newValue) {
+    switch (axis) {
+      case DegreeOfFreedom.Roll:
+        roll.UpdateTextValue(newValue);
+        break;
+      case DegreeOfFreedom.Pitch:
+        pitch.UpdateTextValue(newValue);
+        break;
+      case DegreeOfFreedom.Yaw:
+        yaw.UpdateTextValue(newValue);
+        break;
+      case DegreeOfFreedom.Forward:
+        forward.UpdateTextValue(newValue);
+        break;
+      case DegreeOfFreedom.Vertical:
+        vertical.UpdateTextValue(newValue);
+        break;
+      case DegreeOfFreedom.Lateral:
+        lateral.UpdateTextValue(newValue);
+        break;
+    }
+  }
+
   // Private Functions
 }
