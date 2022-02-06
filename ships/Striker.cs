@@ -46,6 +46,7 @@ public class Striker : RigidBody {
   private float verticalInput;
   private float lateralInput;
   private float forwardInput;
+  private bool emergencyBrake;
 
   // Constructor
 
@@ -60,13 +61,18 @@ public class Striker : RigidBody {
     EmitInputs();
     EmitVelocities();
 
-    AddCentralForce(-Transform.basis.z * forwardInput * ForwardSpeed);
-    AddCentralForce(Transform.basis.x * lateralInput * LateralSpeed);
-    AddCentralForce(Transform.basis.y * verticalInput * VerticalSpeed);
+    if (emergencyBrake) {
+      LinearVelocity = Vector3.Zero;
+      AngularVelocity = Vector3.Zero;
+    } else {
+      AddCentralForce(-Transform.basis.z * forwardInput * ForwardSpeed);
+      AddCentralForce(Transform.basis.y * verticalInput * VerticalSpeed);
+      AddCentralForce(Transform.basis.x * lateralInput * LateralSpeed);
 
-    AddTorque(-Transform.basis.z * rollInput * RollSpeed);
-    AddTorque(Transform.basis.x * pitchInput * PitchSpeed);
-    AddTorque(Transform.basis.y * -yawInput * YawSpeed);
+      AddTorque(-Transform.basis.z * rollInput * RollSpeed);
+      AddTorque(Transform.basis.x * pitchInput * PitchSpeed);
+      AddTorque(Transform.basis.y * -yawInput * YawSpeed);
+    }
   }
 
   // Public Functions
@@ -76,6 +82,8 @@ public class Striker : RigidBody {
     if (!Active) {
       return;
     }
+
+    emergencyBrake = Input.IsActionPressed("emergency_brake");
 
     forwardInput = Input.GetActionStrength("slide_forward") - Input.GetActionStrength("slide_backward");
     lateralInput = Input.GetActionStrength("slide_right") - Input.GetActionStrength("slide_left");
@@ -97,13 +105,14 @@ public class Striker : RigidBody {
   }
 
   private void EmitVelocities() {
-    // these should be the values for how fast you're moving in a direction, not the input values
-    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Roll, rollInput);
-    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Pitch, pitchInput);
-    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Yaw, yawInput);
+    Vector3 localAngularVelocity = GlobalTransform.basis.XformInv(AngularVelocity);
+    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Roll, localAngularVelocity.z);
+    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Pitch, localAngularVelocity.x);
+    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Yaw, localAngularVelocity.y);
 
-    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Forward, forwardInput);
-    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Lateral, lateralInput);
-    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Vertical, verticalInput);
+    Vector3 localLinearVelocity = GlobalTransform.basis.XformInv(LinearVelocity);
+    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Forward, -localLinearVelocity.z);
+    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Lateral, localLinearVelocity.x);
+    EmitSignal(nameof(UpdateVelocity), DegreeOfFreedom.Vertical, localLinearVelocity.y);
   }
 }
