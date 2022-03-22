@@ -8,13 +8,13 @@
 [node name="Spatial" type="Spatial"]
 
 [node name="Striker" parent="." instance=ExtResource( 4 )]
-transform = Transform( -0.0204888, 0, 0.99979, 0, 1, 0, -0.99979, 0, -0.0204888, 58.403, 0, -3.31192 )
+transform = Transform( -0.0204888, 0, 0.99979, 0, 1, 0, -0.99979, 0, -0.0204888, 21.7347, -0.353937, -5.76481 )
 
 [node name="Executioner" parent="." instance=ExtResource( 1 )]
 transform = Transform( -0.999736, 0, 0.022949, 0, 1, 0, -0.022949, 0, -0.999736, 0.781174, -0.340337, 4.26327 )
 
 [node name="Insurgent" parent="." instance=ExtResource( 3 )]
-transform = Transform( 0.999736, 0, -0.0229491, 0, 1, 0, 0.0229491, 0, 0.999736, 2.51933, -0.905226, -31.6237 )
+transform = Transform( 0.999736, 0, -0.0229491, 0, 1, 0, 0.0229491, 0, 0.999736, 2.51933, -0.905226, -17.3515 )
 
 [node name="DebugInterface" parent="." instance=ExtResource( 5 )]
 

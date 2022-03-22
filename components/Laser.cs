@@ -8,6 +8,11 @@ public class Laser : Spatial {
   // Signals
 
   // Exports
+  [Export]
+  private float damagePerSecond = 20.0f;
+
+  [Export]
+  private DamageType damageType = DamageType.Normal;
 
   // Public Fields
 
@@ -15,8 +20,12 @@ public class Laser : Spatial {
 
   // Private Fields
   private RayCast aimCast;
+  private Damage WeaponDamage { get; } // damage per second of continuous contact with the beam
 
   // Constructor
+  public Laser() {
+    WeaponDamage = new Damage(damagePerSecond, damageType);
+  }
 
   // Lifecycle Hooks
   public override void _Ready() {
@@ -26,10 +35,15 @@ public class Laser : Spatial {
   public override void _PhysicsProcess(float delta) {
     if (Input.IsActionPressed("fire_primary")) {
       if (aimCast.IsColliding()) {
-        Godot.Object target = aimCast.GetCollider();
+        CollisionObject target = (CollisionObject)aimCast.GetCollider();
 
-        GD.Print("hit something!", target);
-        // TODO: apply damage
+        if (target.HasNode("Health")) {
+          IHasHealth targetHealth = target.GetNode<IHasHealth>("Health");
+
+          targetHealth.TakeDamage(WeaponDamage * delta);
+        }
+      } else {
+        // TODO: should we do something if they miss?
       }
     }
 
