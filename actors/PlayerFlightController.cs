@@ -12,7 +12,7 @@ public enum DegreeOfFreedom {
 /// <summary>
 /// template
 /// </summary>
-public class Striker : RigidBody {
+public class PlayerFlightController : RigidBody {
   // Signals
   [Signal]
   public delegate void UpdateInput(DegreeOfFreedom axis, float value);
@@ -20,8 +20,6 @@ public class Striker : RigidBody {
   public delegate void UpdateVelocity(DegreeOfFreedom axis, float value);
 
   // Exports
-  [Export]
-  public bool Active;
   [Export]
   public float PitchSpeed = 10.0f;
   [Export]
@@ -36,6 +34,7 @@ public class Striker : RigidBody {
   public float ForwardSpeed = 10.0f;
 
   // Public Fields
+  public bool ActivePlayer;
 
   // Backing Fields
 
@@ -79,7 +78,7 @@ public class Striker : RigidBody {
 
   // Private Functions
   private void GetInput() {
-    if (!Active) {
+    if (!ActivePlayer) {
       return;
     }
 

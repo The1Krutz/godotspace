@@ -1,24 +1,22 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ships/Executioner.tscn" type="PackedScene" id=1]
-[ext_resource path="res://actors/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ships/Insurgent.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ships/Striker.tscn" type="PackedScene" id=4]
 [ext_resource path="res://interface/DebugInterface.tscn" type="PackedScene" id=5]
 
 [node name="Spatial" type="Spatial"]
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.537067, 0, 42.2931 )
+[node name="Striker" parent="." instance=ExtResource( 4 )]
+transform = Transform( -0.0204888, 0, 0.99979, 0, 1, 0, -0.99979, 0, -0.0204888, 58.403, 0, -8.87626 )
 
 [node name="Executioner" parent="." instance=ExtResource( 1 )]
-transform = Transform( -0.0709579, 0, 0.997479, 0, 1, 0, -0.997479, 0, -0.0709579, -16.2956, -0.340337, -12.8618 )
+transform = Transform( -0.999736, 0, 0.022949, 0, 1, 0, -0.022949, 0, -0.999736, 0.781174, -0.340337, 4.26327 )
 
 [node name="Insurgent" parent="." instance=ExtResource( 3 )]
-transform = Transform( 0.0709578, 0, -0.997479, 0, 1, 0, 0.997479, 0, 0.0709578, 19.5961, -0.905226, -14.4986 )
+transform = Transform( 0.999736, 0, -0.0229491, 0, 1, 0, 0.0229491, 0, 0.999736, 2.51933, -0.905226, -31.6237 )
 
 [node name="DebugInterface" parent="." instance=ExtResource( 5 )]
 
-[connection signal="UpdateInput" from="Player/Ship" to="DebugInterface" method="OnInputUpdate"]
-[connection signal="UpdateVelocity" from="Player/Ship" to="DebugInterface" method="OnVelocityUpdate"]
-
-[editable path="Player"]
+[connection signal="UpdateInput" from="Striker" to="DebugInterface" method="OnInputUpdate"]
+[connection signal="UpdateVelocity" from="Striker" to="DebugInterface" method="OnVelocityUpdate"]
