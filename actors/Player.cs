@@ -22,6 +22,7 @@ public class Player : Node {
 
     if (temp != null) {
       temp.ActivePlayer = true;
+      temp.GetNode<Camera>("Camera").Current=true;
     }
   }
 
