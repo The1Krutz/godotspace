@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/Texture.material" type="Material" id=1]
+[ext_resource path="res://components/Health.tscn" type="PackedScene" id=3]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Executioner"
@@ -88,3 +89,6 @@ shape = SubResource( 11 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 12 )
+
+[node name="Health" parent="." instance=ExtResource( 3 )]
+MaxHealth = 75.0

@@ -27,6 +27,11 @@ public struct Damage {
     Amount = amount;
     Type = type;
   }
+
+  public static Damage operator *(Damage dmg, float delta) {
+    dmg.Amount *= delta;
+    return dmg;
+  }
 }
 
 public struct DamageOverTime {
@@ -53,7 +58,7 @@ public class Health : Node, IHasHealth {
 
   // Exports
   [Export]
-  public float MaxHealth { get; set; } = 9.0f;
+  public float MaxHealth { get; set; } = 100.0f;
 
   // Public Fields
   public float CurrentHealth { get; set; }
@@ -82,8 +87,12 @@ public class Health : Node, IHasHealth {
         break;
     }
     if (CurrentHealth <= 0) {
-      // TODO: do something about this
+      // TODO: add some visual for this; right now it just disappears
+      EmitSignal(nameof(HealthDepleted));
+      GetParent().QueueFree();
     }
+
+    GD.Print("current health: ", CurrentHealth);
     EmitSignal(nameof(HealthChanged), CurrentHealth);
   }
 
