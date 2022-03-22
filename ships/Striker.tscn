@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/Texture.material" type="Material" id=1]
 [ext_resource path="res://actors/PlayerFlightController.cs" type="Script" id=2]
 [ext_resource path="res://components/Health.tscn" type="PackedScene" id=3]
 [ext_resource path="res://actors/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ships/Laser.cs" type="Script" id=5]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Striker"
@@ -100,3 +101,10 @@ far = 10000.0
 
 [node name="Health" parent="." instance=ExtResource( 3 )]
 MaxHealth = 100.0
+
+[node name="Laser1" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40086, -0.533316, -4.96731 )
+script = ExtResource( 5 )
+
+[node name="RayCast" type="RayCast" parent="Laser1"]
+cast_to = Vector3( 0, 0, -1000 )
