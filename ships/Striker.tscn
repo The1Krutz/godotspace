@@ -4,7 +4,7 @@
 [ext_resource path="res://actors/PlayerFlightController.cs" type="Script" id=2]
 [ext_resource path="res://components/Health.tscn" type="PackedScene" id=3]
 [ext_resource path="res://actors/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://components/Laser.cs" type="Script" id=5]
+[ext_resource path="res://components/Laser.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Striker"
@@ -102,16 +102,12 @@ far = 10000.0
 [node name="Health" parent="." instance=ExtResource( 3 )]
 MaxHealth = 150.0
 
-[node name="Laser1" type="Spatial" parent="."]
+[node name="Hardpoint1" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40086, -0.533316, -4.96731 )
-script = ExtResource( 5 )
 
-[node name="RayCast" type="RayCast" parent="Laser1"]
-cast_to = Vector3( 0, 0, -1000 )
+[node name="Laser" parent="Hardpoint1" instance=ExtResource( 5 )]
 
-[node name="Laser2" type="Spatial" parent="."]
+[node name="Hardpoint2" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.42443, -0.533316, -4.96731 )
-script = ExtResource( 5 )
 
-[node name="RayCast" type="RayCast" parent="Laser2"]
-cast_to = Vector3( 0, 0, -1000 )
+[node name="Laser" parent="Hardpoint2" instance=ExtResource( 5 )]
