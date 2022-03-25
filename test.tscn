@@ -1,20 +1,23 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ships/Executioner.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/AllSkyFree/AllSkyFree_Sky_AnotherPlanet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ships/Insurgent.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ships/Striker.tscn" type="PackedScene" id=4]
 [ext_resource path="res://interface/DebugInterface.tscn" type="PackedScene" id=5]
 
 [node name="Spatial" type="Spatial"]
 
+[node name="AllSkyFree_Sky_AnotherPlanet" parent="." instance=ExtResource( 2 )]
+
 [node name="Striker" parent="." instance=ExtResource( 4 )]
-transform = Transform( -0.0204888, 0, 0.99979, 0, 1, 0, -0.99979, 0, -0.0204888, 21.7347, -0.353937, -5.76481 )
+transform = Transform( -0.0204888, 0, 0.99979, 0, 1, 0, -0.99979, 0, -0.0204888, -101.072, 206.186, 151.855 )
 
 [node name="Executioner" parent="." instance=ExtResource( 1 )]
-transform = Transform( -0.999736, 0, 0.022949, 0, 1, 0, -0.022949, 0, -0.999736, 0.781174, -0.340337, 4.26327 )
+transform = Transform( -0.999736, 0, 0.022949, 0, 1, 0, -0.022949, 0, -0.999736, -122.025, 206.2, 161.883 )
 
 [node name="Insurgent" parent="." instance=ExtResource( 3 )]
-transform = Transform( 0.999736, 0, -0.0229491, 0, 1, 0, 0.0229491, 0, 0.999736, 2.51933, -0.905226, -17.3515 )
+transform = Transform( 0.999736, 0, -0.0229491, 0, 1, 0, 0.0229491, 0, 0.999736, -120.287, 205.635, 140.268 )
 
 [node name="DebugInterface" parent="." instance=ExtResource( 5 )]
 

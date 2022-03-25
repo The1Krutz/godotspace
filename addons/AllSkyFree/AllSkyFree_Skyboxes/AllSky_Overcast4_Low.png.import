@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/AllSky_Overcast4_Low.png-ee11c9c2b0459a0e2d0f5530b362dcc1.stex"
+path="res://.import/AllSky_Overcast4_Low.png-e3dde643d7625ca22df20bfbedac553c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://AllSkyFree_Skyboxes/AllSky_Overcast4_Low.png"
-dest_files=[ "res://.import/AllSky_Overcast4_Low.png-ee11c9c2b0459a0e2d0f5530b362dcc1.stex" ]
+source_file="res://addons/AllSkyFree/AllSkyFree_Skyboxes/AllSky_Overcast4_Low.png"
+dest_files=[ "res://.import/AllSky_Overcast4_Low.png-e3dde643d7625ca22df20bfbedac553c.stex" ]
 
 [params]
 

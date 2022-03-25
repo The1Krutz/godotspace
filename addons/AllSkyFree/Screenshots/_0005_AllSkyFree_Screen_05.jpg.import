@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/_0005_AllSkyFree_Screen_05.jpg-51fe0e7f559b3fa09b0dc592df8ff989.stex"
+path="res://.import/_0005_AllSkyFree_Screen_05.jpg-d0ac28e41a54e62c65d9ad7b57d91538.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Screenshots/_0005_AllSkyFree_Screen_05.jpg"
-dest_files=[ "res://.import/_0005_AllSkyFree_Screen_05.jpg-51fe0e7f559b3fa09b0dc592df8ff989.stex" ]
+source_file="res://addons/AllSkyFree/Screenshots/_0005_AllSkyFree_Screen_05.jpg"
+dest_files=[ "res://.import/_0005_AllSkyFree_Screen_05.jpg-d0ac28e41a54e62c65d9ad7b57d91538.stex" ]
 
 [params]
 
