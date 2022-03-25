@@ -12,13 +12,13 @@ pipelines:
       - step:
           name: 'Godot Unit Tests'
           script:
-            - godot addons/WAT/cli.tscn run=all --no-window
+            - godot --no-window addons/WAT/cli.tscn run=all
   branches:
     master:
       - step:
           name: 'Godot Unit Tests'
           script:
-            - godot addons/WAT/cli.tscn run=all --no-window
+            - godot --no-window addons/WAT/cli.tscn run=all
 
       # The following deployment steps will be executed for each pipeline run. To configure your steps and conditionally deploy see https://support.atlassian.com/bitbucket-cloud/docs/configure-bitbucket-pipelinesyml/
       - step:
