@@ -20,3 +20,6 @@ mono_crash.*.json
 Test/Metadata
 Test/Results
 Test/results.xml
+
+# exports folder
+.export
