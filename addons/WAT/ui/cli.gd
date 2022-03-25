@@ -17,8 +17,8 @@ func _ready() -> void:
 	var run: Dictionary = {}
 	for arg in arguments:
 		var split = arg.split("=")
-		print("tomato", split)
-		_run[split[0]] = split[1]
+		if len(split)==2:
+			_run[split[0]] = split[1]
 	_parse()
 	
 func _load_tests() -> void:
