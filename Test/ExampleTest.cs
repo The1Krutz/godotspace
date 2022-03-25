@@ -1,6 +1,6 @@
 using System;
 
-namespace Godotvania.Test {
+namespace GodotSpace.Test {
   // Developers may use the [Title] attribute on a Test which will then use string as the name of the Test in the Results View
   [Title("My Example Test")]
 

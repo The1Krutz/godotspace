@@ -1,0 +1,40 @@
+# This whole pipelines thing turned out to be a huge waste of time.
+# Just do it from your local for now, yikes.
+
+# Some combination of these docker images might work eventually
+# image: godotimages/godot:3.3_mono
+# image: glassblade/butler
+# image: barichello/godot-ci
+
+# pipelines:
+#   pull-requests:
+#     '**':
+#       - step:
+#           name: 'Godot Unit Tests'
+#           image: godotimages/godot:3.3_mono
+#           script:
+#             - godot --no-window addons/WAT/cli.tscn run=all
+#   branches:
+#     master:
+#       - step:
+#           name: 'Godot Unit Tests'
+#           image: godotimages/godot:3.3_mono
+#           script:
+#             - godot --no-window addons/WAT/cli.tscn run=all
+#       - step:
+#           name: 'Generate Release Artifacts'
+#           script:
+#             - ./godot-export.sh
+#           artifacts:
+#             - .export/**
+#       - step:
+#           name: 'Deployment to Staging'
+#           deployment: staging
+#           script:
+#             - ./itch-upload-staging.sh
+#       - step:
+#           name: 'Deployment to Production'
+#           deployment: production
+#           trigger: 'manual'
+#           script:
+#             - ./itch-upload-prod.sh
