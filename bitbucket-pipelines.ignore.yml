@@ -13,14 +13,14 @@
 #           name: 'Godot Unit Tests'
 #           image: godotimages/godot:3.3_mono
 #           script:
-#             - godot --no-window addons/WAT/cli.tscn run=all
+#             - ./unit-tests.sh
 #   branches:
 #     master:
 #       - step:
 #           name: 'Godot Unit Tests'
 #           image: godotimages/godot:3.3_mono
 #           script:
-#             - godot --no-window addons/WAT/cli.tscn run=all
+#             - ./unit-tests.sh
 #       - step:
 #           name: 'Generate Release Artifacts'
 #           script:
@@ -28,13 +28,8 @@
 #           artifacts:
 #             - .export/**
 #       - step:
-#           name: 'Deployment to Staging'
-#           deployment: staging
-#           script:
-#             - ./itch-upload-staging.sh
-#       - step:
-#           name: 'Deployment to Production'
+#           name: 'Deployment to Itch'
 #           deployment: production
 #           trigger: 'manual'
 #           script:
-#             - ./itch-upload-prod.sh
+#             - ./itch-upload.sh

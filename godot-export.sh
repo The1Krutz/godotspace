@@ -1,3 +1,5 @@
+rm -rf .export/*
+
 mkdir -p .export/Linux
 ../Godot_v3.3-stable_mono_x11_64/Godot_v3.3-stable_mono_x11.64 --export "Linux/X11" ".export/Linux/GodotSpace.x86_64" --no-window
 
