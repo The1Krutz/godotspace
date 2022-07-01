@@ -2,13 +2,15 @@
 
 ## Introduction
 
-Is an attempt to make a workable 3d space flight sim in godot.
+Is an attempt to make a workable 3d space flight sim in Godot.
 
 It would be real nice if it could end up similar to any of its inspirations, but just being able to fly around would also be nice
 
 ## Features
 
 *  Fly a spaceship in a featureless void!
+
+    * Now with terrain!
 
 ## Inspirations:
 
