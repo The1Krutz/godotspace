@@ -25,11 +25,11 @@ It would be real nice if it could end up similar to any of its inspirations, but
 
 ## Credits
 
-* Spaceship models are from the [https://quaternius.com/packs/ultimatespaceships.html](Quaternius Ultimate Spaceship Pack) (licensed CC0)
+* Spaceship models are from the [Quaternius Ultimate Spaceship Pack](https://quaternius.com/packs/ultimatespaceships.html) (licensed CC0)
 
-* Skybox is from [https://godotengine.org/asset-library/asset/579](AllSky Free) (licensed MIT)
+* Skybox is from [AllSky Free](https://godotengine.org/asset-library/asset/579) (licensed MIT)
 
-* Bar graphics are from [https://github.com/GDQuest/godot-demos](GDQuest's Godot Demos) (licensed MIT)
+* Bar graphics are from [GDQuest's Godot Demos](https://github.com/GDQuest/godot-demos) (licensed MIT)
 
 ## License
 
